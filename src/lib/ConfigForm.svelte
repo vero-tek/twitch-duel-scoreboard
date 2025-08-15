@@ -6,14 +6,15 @@
 	import type { Config } from '$lib/types';
 	import { locales, setLocale } from '$lib/paraglide/runtime';
 	import { m } from '$lib/paraglide/messages';
+	import { resolve } from '$app/paths';
 
 	const { config = $bindable() }: { config: Config } = $props();
 
-	const configUrl = $derived.by(() => {
+	const configPath = $derived.by(() => {
 		const encoded = encode(config);
 		const encodedString = String.fromCharCode(...encoded);
 		const urlSafe = LZString.compressToEncodedURIComponent(encodedString);
-		return `${page.url.origin}/config?c=${urlSafe}`;
+		return `${resolve('/config')}?c=${urlSafe}`;
 	});
 
 	$effect(() => {
@@ -69,7 +70,7 @@
 
 	<p class="overlay-url-container">
 		<strong class="overlay-label">{m.generatedOverlayURL()}:</strong>
-		<a href={configUrl} class="overlay-url" target="_blank">{configUrl}</a>
+		<a href={configPath} class="overlay-url" target="_blank">{`${page.url.origin}${configPath}`}</a>
 	</p>
 </form>
 
