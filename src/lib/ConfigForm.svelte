@@ -55,7 +55,7 @@
 
 	<hr />
 
-	<h3>Players</h3>
+	<h3>{m.players()}</h3>
 	<PlayerConfig
 		wins={config.wins}
 		bind:player={config.player1}

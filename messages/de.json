@@ -29,5 +29,6 @@
 	"color": "Farbe",
 	"startWins": "Startsiege",
 	"configuration": "Konfiguration",
-	"livePreview": "Live Vorschau"
+	"livePreview": "Live Vorschau",
+	"players": "Spieler"
 }
