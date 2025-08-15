@@ -22,74 +22,146 @@
 	});
 </script>
 
-<form>
-	<div>
-		<label for="theme">{m.theme()}</label>
-		<select bind:value={config.theme}>
-			<option value="light">{m.light_theme()}</option>
-			<option value="dark">{m.dark_theme()}</option>
-		</select>
-	</div>
+<form class="config-form">
+	<fieldset>
+		<legend>{m.generalSettings()}</legend>
 
-	<div>
-		<label for="wins">{m.wins({ count: 2 })}</label>
-		<input type="number" bind:value={config.wins} min="1" />
-	</div>
+		<div class="form-group">
+			<label for="theme">{m.theme()}</label>
+			<select id="theme" bind:value={config.theme}>
+				<option value="light">{m.light_theme()}</option>
+				<option value="dark">{m.dark_theme()}</option>
+			</select>
+		</div>
 
-	<div>
-		<label for="language">{m.language()}</label>
-		<select bind:value={config.language}>
-			{#each locales as locale (locale)}
-				<option value={locale}>{locale}</option>
-			{/each}
-		</select>
-	</div>
+		<div class="form-group">
+			<label for="wins">{m.wins({ count: 2 })}</label>
+			<input type="number" id="wins" bind:value={config.wins} min="1" />
+		</div>
 
-	<div>
-		<label for="layout">{m.layout()}</label>
-		<select bind:value={config.layout}>
-			<option value="horizontal">{m.horizontal()}</option>
-			<option value="vertical">{m.vertical()}</option>
-		</select>
-	</div>
+		<div class="form-group">
+			<label for="language">{m.language()}</label>
+			<select id="language" bind:value={config.language}>
+				{#each locales as locale (locale)}
+					<option value={locale}>{locale}</option>
+				{/each}
+			</select>
+		</div>
 
-	<hr />
+		<div class="form-group">
+			<label for="layout">{m.layout()}</label>
+			<select id="layout" bind:value={config.layout}>
+				<option value="horizontal">{m.horizontal()}</option>
+				<option value="vertical">{m.vertical()}</option>
+			</select>
+		</div>
+	</fieldset>
 
-	<h3>{m.players()}</h3>
-	<PlayerConfig
-		wins={config.wins}
-		bind:player={config.player1}
-		bind:configTwitchName={config.configTwitchName}
-	/>
-	<PlayerConfig wins={config.wins} bind:player={config.player2} />
+	<fieldset class="players">
+		<legend>{m.players()}</legend>
+		<PlayerConfig
+			wins={config.wins}
+			bind:player={config.player1}
+			bind:configTwitchName={config.configTwitchName}
+		/>
+		<PlayerConfig wins={config.wins} bind:player={config.player2} />
+	</fieldset>
 
-	<hr />
+	<fieldset>
+		<legend>{m.overlaySettings()}</legend>
+		<div class="form-group">
+			<label for="configTwitchName">{m.configTwitchName()}</label>
+			<input type="text" id="configTwitchName" bind:value={config.configTwitchName} />
+		</div>
+	</fieldset>
 
-	<label for="configTwitchName">{m.configTwitchName()}</label>
-	<input type="text" bind:value={config.configTwitchName} />
+	<fieldset>
+		<legend>{m.generatedOverlayURL()}</legend>
 
-	<p class="overlay-url-container">
-		<strong class="overlay-label">{m.generatedOverlayURL()}:</strong>
-		<a href={configPath} class="overlay-url" target="_blank">{`${page.url.origin}${configPath}`}</a>
-	</p>
+		<div class="form-group">
+			<label for="overlayUrl">{m.generatedOverlayURL()}</label>
+			<a href={configPath} class="overlay-url" target="_blank"
+				>{`${page.url.origin}${configPath}`}</a
+			>
+		</div>
+		<div class="form-group">
+			<label for="usage">{m.usage()}</label>
+			<p>{m.usageText()}</p>
+		</div>
+	</fieldset>
 </form>
 
 <style>
-	.overlay-url-container {
+	.config-form {
+		margin: 1rem;
+		padding: 1.5rem;
+		background: #fbfbfb;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		font-family: system-ui, sans-serif;
 		display: flex;
-		gap: 0.25rem;
+		flex-direction: column;
+		gap: 1.5rem;
 	}
 
-	.overlay-label {
-		white-space: nowrap;
-		flex-shrink: 0;
+	fieldset {
+		background: #eeeeee;
+		padding: 1rem 1.25rem;
+		border: 1px solid #ccc;
+		border-radius: 6px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	legend {
+		padding: 0 0.5rem;
+		font-weight: 600;
+		color: #333;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1;
+	}
+
+	label {
+		margin-bottom: 0.25rem;
+		font-weight: 500;
+		color: #555;
+	}
+
+	input,
+	select {
+		background-color: #fcfcfc;
+		padding: 0.5rem;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 1rem;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input:focus,
+	select:focus {
+		outline: none;
+		border-color: #4a90e2;
+		box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 	}
 
 	.overlay-url {
-		flex: 1;
-		min-width: 0;
+		max-width: 40vw;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		white-space: nowrap;
+		text-decoration: none;
+	}
+	.overlay-url:hover {
+		text-decoration: underline;
+	}
+
+	.players {
+		flex-direction: column;
 	}
 </style>

@@ -30,5 +30,9 @@
 	"startWins": "Start Wins",
 	"configuration": "Configuration",
 	"livePreview": "Live Preview",
-	"players": "Players"
+	"players": "Players",
+	"generalSettings": "General Settings",
+	"overlaySettings": "Overlay Settings",
+	"usage": "Usage",
+	"usageText": "Moderators can add a win or loss with !sb win/lose. A new score can be set with !sb set number/number, e.g. !sb set 5/10 to set the wins to five for player 1 and ten for player 2."
 }

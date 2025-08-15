@@ -26,8 +26,27 @@
 	});
 </script>
 
-<h1>{m.configuration()}</h1>
-<ConfigForm bind:config />
+<main>
+	<h1>{m.configuration()}</h1>
+	<ConfigForm bind:config />
 
-<h1>{m.livePreview()}</h1>
-<Scoreboard {config} />
+	<h2>{m.livePreview()}</h2>
+	<div class="preview-container">
+		<Scoreboard {config} />
+	</div>
+</main>
+
+<style>
+	main {
+		margin: 1em;
+	}
+
+	h1,
+	h2 {
+		text-align: center;
+	}
+
+	.preview-container {
+		padding: 0 5vw;
+	}
+</style>

@@ -30,5 +30,9 @@
 	"startWins": "Startsiege",
 	"configuration": "Konfiguration",
 	"livePreview": "Live Vorschau",
-	"players": "Spieler"
+	"players": "Spieler",
+	"generalSettings": "Allgemeine Einstellungen",
+	"overlaySettings": "Overlay Einstellungen",
+	"usage": "Nutzung",
+	"usageText": "Moderatoren können mit !sb win/lose einen Sieg oder eine Niederlage hinzufügen. Mit !sb set Zahl/Zahl kann der Spielstand neu gesetzt werden, z.B. !sb set 5/10, um die Siege auf fünf für Spieler 1 und zehn für Spieler 2 zu setzten."
 }
