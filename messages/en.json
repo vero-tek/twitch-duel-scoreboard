@@ -1,0 +1,33 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"theme": "Theme",
+	"light_theme": "Light",
+	"dark_theme": "Dark",
+	"language": "Language",
+	"layout": "Layout",
+	"horizontal": "Horizontal",
+	"vertical": "Vertical",
+	"configTwitchName": "Config Twitch Name",
+	"generatedOverlayURL": "Generated Overlay URL",
+	"wins": [
+		{
+			"declarations": [
+				"input count",
+				"local countPlural = count: plural"
+			],
+			"selectors": [
+				"countPlural"
+			],
+			"match": {
+				"countPlural=one": "Win",
+				"countPlural=other": "Wins"
+			}
+		}
+	],
+	"twitchName": "Twitch Name",
+	"displayName": "Display Name",
+	"color": "Color",
+	"startWins": "Start Wins",
+	"configuration": "Configuration",
+	"livePreview": "Live Preview"
+}
