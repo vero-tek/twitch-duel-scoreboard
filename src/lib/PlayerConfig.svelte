@@ -15,7 +15,7 @@
 		bind:value={player.twitchName}
 		oninput={() => {
 			player.displayName = player.twitchName;
-			if (configTwitchName) {
+			if (configTwitchName !== undefined) {
 				configTwitchName = player.twitchName;
 			}
 		}}
