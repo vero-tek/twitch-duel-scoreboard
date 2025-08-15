@@ -3,9 +3,11 @@ import { Client, type Message } from '@tmi.js/chat';
 export class TwitchClient {
 	private _client: Client;
 	private _channel: string;
+	private _messageHandlers: ((data: Message.Event) => void)[];
 
 	constructor(channel: string) {
 		this._channel = channel.toLowerCase();
+		this._messageHandlers = [];
 		this._client = TwitchClient.setupClient(this._channel);
 	}
 
@@ -42,6 +44,7 @@ export class TwitchClient {
 
 		this.close();
 		this._client = TwitchClient.setupClient(this._channel);
+		this._messageHandlers.forEach((h) => this.startMessageHandler(h));
 		this.connect();
 	}
 
@@ -49,10 +52,13 @@ export class TwitchClient {
 		this._client.close();
 	}
 
+	private startMessageHandler(handler: (data: Message.Event) => void) {
+		this._client.on('message', handler);
+	}
+
 	public onMessage(handler: (data: Message.Event) => void) {
-		this._client.on('message', (e) => {
-			handler(e);
-		});
+		this._messageHandlers.push(handler);
+		this.startMessageHandler(handler);
 	}
 }
 
