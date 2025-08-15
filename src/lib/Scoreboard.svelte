@@ -130,6 +130,6 @@
 	}
 
 	.scoreboard[style*='column'] .vs {
-		margin: 2vh 0;
+		margin: 1vh 0;
 	}
 </style>

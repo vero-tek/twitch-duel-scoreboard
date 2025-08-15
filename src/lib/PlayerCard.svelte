@@ -61,7 +61,7 @@
 	}
 
 	.score-bar {
-		width: 80%;
+		width: 90%;
 		height: 4vh;
 		background: #ccc;
 		border-radius: 2vh;
