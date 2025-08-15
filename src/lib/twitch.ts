@@ -6,16 +6,21 @@ export class TwitchClient {
 
 	constructor(channel: string) {
 		this._channel = channel.toLowerCase();
-		this._client = new Client({
-			channels: [this._channel],
+		this._client = TwitchClient.setupClient(this._channel);
+	}
+
+	protected static setupClient(channel: string) {
+		const client = new Client({
+			channels: [channel],
 			token: undefined
 		});
-		this._client.on('error', (e) => {
+		client.on('error', (e) => {
 			console.warn(e);
 		});
-		this._client.on('connect', () => {
-			console.debug(`Connected to ${this._channel}`);
+		client.on('connect', () => {
+			console.debug(`Connected to ${channel}`);
 		});
+		return client;
 	}
 
 	public connect() {
@@ -29,19 +34,15 @@ export class TwitchClient {
 	}
 
 	public set channel(channel: string) {
+		if (this._channel === channel) {
+			return;
+		}
+
 		this._channel = channel;
 
-		if (this._client.isConnected()) {
-			console.debug(`leaving ${this._channel}`);
-			this._client.part(this._channel);
-			console.debug(`joining ${this._channel}`);
-			this._client.join(channel);
-		} else {
-			this._client = new Client({
-				channels: [channel],
-				token: undefined
-			});
-		}
+		this.close();
+		this._client = TwitchClient.setupClient(this._channel);
+		this.connect();
 	}
 
 	public close() {
