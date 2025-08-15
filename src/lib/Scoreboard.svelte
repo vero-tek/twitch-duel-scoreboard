@@ -114,26 +114,6 @@
 		padding: 2vh 2vw;
 		box-sizing: border-box;
 	}
-	.player-header {
-		display: flex;
-		align-items: center;
-		gap: 0.5em;
-		margin-bottom: 1vh;
-	}
-
-	.player-logo {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		object-fit: cover;
-		border: 2px solid #fff;
-	}
-
-	.player-name {
-		font-weight: bold;
-		font-size: 1em;
-	}
-
 	.scoreboard.light {
 		background: #f0f0f0;
 		color: #111;
@@ -141,37 +121,6 @@
 	.scoreboard.dark {
 		background: #222;
 		color: #eee;
-	}
-
-	.player {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		font-size: calc(1vw + 1vh + 0.5vmin);
-	}
-
-	.score-bar {
-		width: 80%;
-		height: 4vh;
-		background: #ccc;
-		border-radius: 2vh;
-		overflow: hidden;
-		margin-bottom: 1vh;
-	}
-	.score-fill {
-		height: 100%;
-		background-color: var(--score-color, red);
-		transition: width 0.3s ease;
-	}
-
-	.score-text {
-		font-size: 1em;
-		margin-bottom: 1vh;
-	}
-	.wins-needed {
-		font-size: 0.8em;
-		color: #888;
-		text-align: center;
 	}
 
 	.vs {
