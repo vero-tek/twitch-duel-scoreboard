@@ -36,11 +36,11 @@ export class TwitchClient {
 	}
 
 	public set channel(channel: string) {
-		if (this._channel === channel) {
+		if (this._channel === channel.toLowerCase()) {
 			return;
 		}
 
-		this._channel = channel;
+		this._channel = channel.toLowerCase();
 
 		this.close();
 		this._client = TwitchClient.setupClient(this._channel);
@@ -50,6 +50,7 @@ export class TwitchClient {
 
 	public close() {
 		this._client.close();
+		this._client.socket?.close();
 	}
 
 	private startMessageHandler(handler: (data: Message.Event) => void) {
